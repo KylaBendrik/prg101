@@ -1,0 +1,6 @@
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: separator
+
+Layout/SpaceInsideStringInterpolation:
+  EnforcedStyle: space

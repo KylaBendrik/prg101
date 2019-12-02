@@ -6,5 +6,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # gem "rails"
 
-gem 'rubocop', require: false
+gem 'reek', require: false
+gem 'rubocop', '>= 0.77',require: false
 gem 'rspec', require: false
+gem 'solargraph', require: false
