@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-NUMERALS = %w[M D C L X V I].freeze
-VALUES = [1_000, 500, 100, 50, 10, 5, 1].freeze
+NUMERALS = %w[M CM D CD C XC L XL X IX V IV I].freeze
+VALUES = [1_000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1].freeze
 
 def numeralize(num)
   result = ''
@@ -12,18 +12,15 @@ def numeralize(num)
     num = num % val
     result += assign_numeral(dividend, index)
   end
+
   result
 end
 
 def assign_numeral(dividend, index)
   character = NUMERALS[index]
-  result = character * dividend
+  numeral = character * dividend
 
-  # if %w[I X C].include?(character) && dividend == 4
-  #   result = character + NUMERALS[index - 1]
-  # end
-
-  result
+  numeral
 end
 
 print 'Enter some number: '
