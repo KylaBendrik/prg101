@@ -1,0 +1,1 @@
+input = File.read('./advent06_input.txt').split(','.map(&:to_i)
