@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require_relative '../advent02'
+require_relative '../advent05b'
 
-describe Advent2 do
+describe Computer do
   # 1,0,0,0,99 becomes 2,0,0,0,99 (1 + 1 = 2).
   it 'transforms sample 1 as expected' do
     expect(subject.run([1, 0, 0, 0, 99]))
