@@ -1,28 +1,27 @@
+# frozen_string_literal: true
+
 input = File.read('./frequency_input.txt').downcase
 
-# input is string of words: "dangsin-ege insa, chinjeolhan chingu."
-# split into array, getting rid of all punctuation: [dansin, ege, insa, chinjeolhan, chingu]
-pretty_string = input.tr(',.-?-!',' ')
+# input is string of words: "dangsin-ege insa, chinjeol"
+# split into array, getting rid of all punctuation:[dansin, ege, insa, chinjeol]
+array = input.tr(',.-?-!', ' ').split(' ')
 
-array = pretty_string.split(' ')
-puts array
+CONSONANTS = %w[b c d f g h j k l m n p q r s t v w x z].freeze
+VOWELS = %w[a e i o u y].freeze
 
-#count characters
+def count_clusters(array)
+  clusters = Hash.new(0)
+  new_cluster = []
+  char_type = "empty"
 
-characters = Hash.new
-
-def count_alphabet(input, characters)
-  ('a'..'z').each do |letter|
-    characters[letter] = 0
-  end
-
-  input.each do |word|
-    chars = word.split('')
-    chars.each do |letter|
-      characters[letter] += 1
+  array.each do |word|
+    puts "#{word}"
+    word.chars.each do |char|
+      clusters[char] +=1
     end
   end
-  puts characters
+
+  clusters
 end
 
-count_alphabet(array, characters)
+puts count_clusters(['ace'])
