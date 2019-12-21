@@ -15,4 +15,8 @@ def num_orbits(orbits, current, depth)
     .sum + depth
 end
 
+def find_path(orbits, current, path)
+  return path if current == 'SAN'
+end
+
 puts num_orbits(orbits, 'COM', 0)
