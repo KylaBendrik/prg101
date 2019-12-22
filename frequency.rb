@@ -11,6 +11,7 @@ CONSONANTS = %w[b c d f g h j k l m n p q r s t v w x z].freeze
 VOWELS = %w[a e i o u y].freeze
 
 class Counter
+  
   def count_clusters(array)
     clusters = Hash.new(0)
     new_cluster = []
@@ -30,17 +31,15 @@ class Counter
                               :consonant
                             end
 
-        # if we're at the beginning of the word, just add letter to cluster
-        # if last letter is the same type as this letter, add letter to cluster
-        # if last letter is different, submit cluster, start new cluster, add letter
+        # if we're at the beginning of the word, just add letter to cluster (A)
+        # if last letter is the same type as this letter, add letter to cluster (B)
+        # if last letter is different, submit cluster, start new cluster, add letter (C)
+        # if cluster.join == "ng", submit cluster, start new cluster, add letter (D)
 
-        unless last_char_type == :empty || last_char_type == current_char_type
-          print current_char_type
-          if current_cluster.length > 1 && current_char_type == :vowel
-            print " - submitting"
-            clusters[current_cluster.join] += 1
+        if last_char_type != current_char_type || current_cluster.join == 'ng'
+          unless current_char_type == :consonant
+            submit(current_cluster, clusters)
           end
-          puts " "
           current_cluster = []
         end
 
@@ -52,6 +51,9 @@ class Counter
     end
 
     clusters
+  end
+  def submit(cluster, clusters)
+    clusters[cluster.join] += 1
   end
 end
 
