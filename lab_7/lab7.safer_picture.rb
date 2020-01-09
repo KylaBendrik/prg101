@@ -2,6 +2,7 @@
 
 CATEGORIES = {}
 
+
 def find_extra(old_name)
   if old_name.downcase.include?('seamless')
     '_seamless'
@@ -54,8 +55,21 @@ end
 
 Dir.chdir 'C:/Users/BethJackson/Desktop/learn/lab_7/inputs/new_pictures'
 
+# next task: find the directories in here already, and set up the above CATEGORIES hash
+
+
+
+default_number = Dir['*.jpg'].length + Dir['*.png'].length
+
 pic_names_jpgs = Dir['../pictures/*.jpg']
 pic_names_pngs = Dir['../pictures/*.png']
+
+Dir.each_child('./') {|x| puts "Got #{x}"
+ unless x.include?('.jpg') || x.include?('.png')
+  arr_length = Dir["./#{x}/*.jpg"].length + Dir["./#{x}/*.png"].length
+  CATEGORIES[x] = arr_length
+ end
+}
 
 puts 'What would you like to call this batch?'
 
@@ -65,7 +79,7 @@ puts
 print "Downloading #{pic_names_jpgs.length + pic_names_pngs.length} files:  "
 
 pic_number = 1
-default_number = 0
+
 
 pic_names_jpgs.each do |name|
   print '.'
