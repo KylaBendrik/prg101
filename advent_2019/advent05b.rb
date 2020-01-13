@@ -16,6 +16,10 @@ class Instruction
     2 => 3,
     3 => 1,
     4 => 1,
+    5 => 0,
+    6 => 0,
+    7 => 3,
+    8 => 3,
     99 => 0
   }.freeze
 
@@ -32,8 +36,6 @@ class Instruction
     case opcode % 100
     when 1
       @tape[@tape[@pointer + 3]] = parameter(0) + parameter(1)
-      # pp @tape[@pointer..(@pointer + 3)]
-      # puts "p(0) + p(1) = #{parameter(0) + parameter(1)}"
       :continue
     when 2
       @tape[@tape[@pointer + 3]] = parameter(0) * parameter(1)
@@ -42,8 +44,35 @@ class Instruction
       @tape[@tape[@pointer + 1]] = gets.to_i
       :continue
     when 4
-      
       puts parameter(0)
+      :continue
+    when 5
+      # jump if true
+      if parameter(0) != 0
+        @pointer = parameter(1)
+      end
+      :continue
+    when 6
+      #jump if false
+      if parameter(0) == 0
+        @pointer = parameter(1)
+      end
+      :continue
+    when 7
+      # less than
+      if parameter(0) < parameter(1)
+        @tape[parameter(2)] = 1
+      else
+        @tape[parameter(2)] = 0
+      end
+      :continue
+    when 8
+      # equals
+      if parameter(0) == parameter(1)
+        @tape[parameter(2)] = 1
+      else
+        @tape[parameter(2)] = 0
+      end
       :continue
     when 99
       :halt
