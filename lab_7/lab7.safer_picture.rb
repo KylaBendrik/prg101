@@ -32,10 +32,11 @@ def rename(old_name, file_type, batch_name, default_num)
   end
 
   # if category not found, ask if you'd like to create one
-  puts 'No category found. Would you like to create one? (yes or no)'
-  if gets.chomp.downcase.include?('y')
+  puts 'No category found. Would you like to create one? (enter new category name or no)'
+  input = gets.chomp.downcase
+  unless input.include?('no')
     print 'New category: '
-    new_cat = gets.chomp.downcase
+    new_cat = input
 
     puts "adding to category: #{new_cat} ##{1}"
 
@@ -50,7 +51,10 @@ def rename(old_name, file_type, batch_name, default_num)
 
   default_num += 1
   puts "no category found. Default Number assigned: #{default_num}"
-  "#{batch_name}#{default_num}.#{file_type}"
+  print "Enter name for this file (or press enter to leave default name): "
+  temp_name = gets.chomp
+  temp_name = "_#{temp_name}" unless temp_name.empty?
+  "#{batch_name}#{default_num}#{temp_name}.#{file_type}"
 end
 
 Dir.chdir 'C:/Users/BethJackson/Desktop/learn/lab_7/inputs/new_pictures'
