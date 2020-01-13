@@ -145,8 +145,11 @@ class Computer
 
   def step
     # create a new instruction
+    STDOUT.puts @tape.inspect
+    STDOUT.puts @pointer
     instruction = Instruction.new(@tape, @pointer)
     new_pointer = instruction.next_position
+    STDOUT.puts new_pointer
     result = instruction.perform
     @pointer = new_pointer
     result
@@ -155,13 +158,14 @@ class Computer
   def run
     puts 'started'
     result = step until result == :halt
+    tape
   end
 end
 
-input = File.read('./advent05b_input.txt').split(',').map(&:to_i)
+# input = File.read('./advent05b_input.txt').split(',').map(&:to_i)
 
-# input = [3,0,4,0,99]
+# # input = [3,0,4,0,99]
 
-computer = Computer.new(input)
+# computer = Computer.new(input)
 
-computer.run
+# computer.run
