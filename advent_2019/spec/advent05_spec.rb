@@ -73,86 +73,86 @@ describe Computer do
 
   it 'detects input == 8 using position mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("8\n")
-    expect { described_class.new(PRG1.dup).run }.to output("INPUT: OUTPUT: 1\n").to_stdout
+    expect { described_class.new(PRG1.dup).run }.to output("started\n1\n").to_stdout
   end
 
   it 'detects input != 8 using position mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("42\n")
-    expect { described_class.new(PRG1.dup).run }.to output("INPUT: OUTPUT: 0\n").to_stdout
+    expect { described_class.new(PRG1.dup).run }.to output("started\n0\n").to_stdout
   end
 
   it 'detects input < 8 using position mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("7\n")
-    expect { described_class.new(PRG2.dup).run }.to output("INPUT: OUTPUT: 1\n").to_stdout
+    expect { described_class.new(PRG2.dup).run }.to output("started\n1\n").to_stdout
   end
 
   it 'detects input !< (==) 8 using position mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("8\n")
-    expect { described_class.new(PRG2.dup).run }.to output("INPUT: OUTPUT: 0\n").to_stdout
+    expect { described_class.new(PRG2.dup).run }.to output("started\n0\n").to_stdout
   end
 
   it 'detects input !< (>) 8 using position mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("9\n")
-    expect { described_class.new(PRG2.dup).run }.to output("INPUT: OUTPUT: 0\n").to_stdout
+    expect { described_class.new(PRG2.dup).run }.to output("started\n0\n").to_stdout
   end
 
   it 'detects input == 8 using immediate mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("8\n")
-    expect { described_class.new(PRG3.dup).run }.to output("INPUT: OUTPUT: 1\n").to_stdout
+    expect { described_class.new(PRG3.dup).run }.to output("started\n1\n").to_stdout
   end
 
   it 'detects input != 8 using immediate mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("42\n")
-    expect { described_class.new(PRG3.dup).run }.to output("INPUT: OUTPUT: 0\n").to_stdout
+    expect { described_class.new(PRG3.dup).run }.to output("started\n0\n").to_stdout
   end
 
   it 'detects input < 8 using immediate mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("7\n")
-    expect { described_class.new(PRG4.dup).run }.to output("INPUT: OUTPUT: 1\n").to_stdout
+    expect { described_class.new(PRG4.dup).run }.to output("started\n1\n").to_stdout
   end
 
   it 'detects input !< (==) 8 using immediate mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("8\n")
-    expect { described_class.new(PRG4.dup).run }.to output("INPUT: OUTPUT: 0\n").to_stdout
+    expect { described_class.new(PRG4.dup).run }.to output("started\n0\n").to_stdout
   end
 
   it 'detects input !< (>) 8 using immediate mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("9\n")
-    expect { described_class.new(PRG4.dup).run }.to output("INPUT: OUTPUT: 0\n").to_stdout
+    expect { described_class.new(PRG4.dup).run }.to output("started\n0\n").to_stdout
   end
 
   it 'detects zero using jump with position mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("0\n")
-    expect { described_class.new(PRG5.dup).run }.to output("INPUT: OUTPUT: 0\n").to_stdout
+    expect { described_class.new(PRG5.dup).run }.to output("started\n0\n").to_stdout
   end
 
   it 'detects non-zero using jump with position mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("1\n")
-    expect { described_class.new(PRG5.dup).run }.to output("INPUT: OUTPUT: 1\n").to_stdout
+    expect { described_class.new(PRG5.dup).run }.to output("started\n1\n").to_stdout
   end
 
   it 'detects zero using jump with immediate mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("0\n")
-    expect { described_class.new(PRG6.dup).run }.to output("INPUT: OUTPUT: 0\n").to_stdout
+    expect { described_class.new(PRG6.dup).run }.to output("started\n0\n").to_stdout
   end
 
   it 'detects non-zero using jump with immediate mode' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("1\n")
-    expect { described_class.new(PRG6.dup).run }.to output("INPUT: OUTPUT: 1\n").to_stdout
+    expect { described_class.new(PRG6.dup).run }.to output("started\n1\n").to_stdout
   end
 
   it 'prints 999 for input < 8' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("7\n")
-    expect { described_class.new(PRG7.dup).run }.to output("INPUT: OUTPUT: 999\n").to_stdout
+    expect { described_class.new(PRG7.dup).run }.to output("started\n999\n").to_stdout
   end
 
   it 'prints 1000 for input == 8' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("8\n")
-    expect { described_class.new(PRG7.dup).run }.to output("INPUT: OUTPUT: 1000\n").to_stdout
+    expect { described_class.new(PRG7.dup).run }.to output("started\n1000\n").to_stdout
   end
 
   it 'prints 1001 for input > 8' do
     allow_any_instance_of(Kernel).to receive(:gets).and_return("9\n")
-    expect { described_class.new(PRG7.dup).run }.to output("INPUT: OUTPUT: 1001\n").to_stdout
+    expect { described_class.new(PRG7.dup).run }.to output("started\n1001\n").to_stdout
   end
 end

@@ -8,6 +8,10 @@ class Instruction
     2 => 'MULT',
     3 => 'IN',
     4 => 'OUT',
+    5 => 'JUMP',
+    6 => 'JUMP',
+    7 => 'LT',
+    8 => 'EQ',
     99 => 'HALT'
   }.freeze
 
@@ -16,8 +20,8 @@ class Instruction
     2 => 3,
     3 => 1,
     4 => 1,
-    5 => 0,
-    6 => 0,
+    5 => 2,
+    6 => 2,
     7 => 3,
     8 => 3,
     99 => 0
@@ -49,29 +53,33 @@ class Instruction
     when 5
       # jump if true
       if parameter(0) != 0
-        @pointer = parameter(1)
+        @new_target = parameter(1)
+      else
+        @new_target += 3
       end
       :continue
     when 6
       #jump if false
       if parameter(0) == 0
-        @pointer = parameter(1)
+        @new_target = parameter(1)
+      else
+        @new_target += 3
       end
       :continue
     when 7
       # less than
       if parameter(0) < parameter(1)
-        @tape[parameter(2)] = 1
+        @tape[@tape[@pointer + 3]] = 1
       else
-        @tape[parameter(2)] = 0
+        @tape[@tape[@pointer + 3]] = 0
       end
       :continue
     when 8
       # equals
       if parameter(0) == parameter(1)
-        @tape[parameter(2)] = 1
+        @tape[@tape[@pointer + 3]] = 1
       else
-        @tape[parameter(2)] = 0
+        @tape[@tape[@pointer + 3]] = 0
       end
       :continue
     when 99
@@ -86,7 +94,11 @@ class Instruction
   end
 
   def next_position
-    @pointer + (LENGTHS.fetch(opcode % 100) + 1)
+    if opcode == 5 && opcode == 6
+      @new_target
+    else
+      @pointer + (LENGTHS.fetch(opcode % 100) + 1)
+    end  
   end
 
   def parameters
@@ -137,6 +149,17 @@ class Instruction
 end
 
 class Computer
+  OP_CODES = {
+    1 => 'ADD',
+    2 => 'MULT',
+    3 => 'IN',
+    4 => 'OUT',
+    5 => 'JUMP',
+    6 => 'JUMP',
+    7 => 'LT',
+    8 => 'EQ',
+    99 => 'HALT'
+  }.freeze
   attr_accessor :tape, :pointer
   def initialize(array)
     @pointer = 0
@@ -148,10 +171,13 @@ class Computer
     STDOUT.puts @tape.inspect
     STDOUT.puts @pointer
     instruction = Instruction.new(@tape, @pointer)
+    STDOUT.puts "opcode - #{OP_CODES[instruction.opcode]}"
+    opcode = instruction.opcode
     new_pointer = instruction.next_position
     STDOUT.puts new_pointer
     result = instruction.perform
     @pointer = new_pointer
+    STDOUT.puts "pointer: #{@pointer}"
     result
   end
 
