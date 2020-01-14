@@ -33,6 +33,8 @@ class Instruction
   end
 
   def perform
+    
+    STDOUT.puts "opcode - #{OP_CODES[opcode % 100]}: #{parameter(0)}, #{parameter(1)}"
     #goal: parameter return a single value, call each time?
     # params = parameters
     # pp params
@@ -55,7 +57,7 @@ class Instruction
       if parameter(0) != 0
         @new_target = parameter(1)
       else
-        @new_target += 3
+        @new_target = @pointer + 3
       end
       :continue
     when 6
@@ -63,7 +65,7 @@ class Instruction
       if parameter(0) == 0
         @new_target = parameter(1)
       else
-        @new_target += 3
+        @new_target = @pointer + 3
       end
       :continue
     when 7
@@ -94,7 +96,9 @@ class Instruction
   end
 
   def next_position
-    if opcode == 5 && opcode == 6
+    STDOUT.puts "opcode:::: #{opcode}"
+    if (opcode % 100) == 5 || (opcode % 100) == 6
+      STDOUT.puts "5 or 6"
       @new_target
     else
       @pointer + (LENGTHS.fetch(opcode % 100) + 1)
@@ -149,17 +153,6 @@ class Instruction
 end
 
 class Computer
-  OP_CODES = {
-    1 => 'ADD',
-    2 => 'MULT',
-    3 => 'IN',
-    4 => 'OUT',
-    5 => 'JUMP',
-    6 => 'JUMP',
-    7 => 'LT',
-    8 => 'EQ',
-    99 => 'HALT'
-  }.freeze
   attr_accessor :tape, :pointer
   def initialize(array)
     @pointer = 0
@@ -171,13 +164,10 @@ class Computer
     STDOUT.puts @tape.inspect
     STDOUT.puts @pointer
     instruction = Instruction.new(@tape, @pointer)
-    STDOUT.puts "opcode - #{OP_CODES[instruction.opcode]}"
-    opcode = instruction.opcode
+    result = instruction.perform
     new_pointer = instruction.next_position
     STDOUT.puts new_pointer
-    result = instruction.perform
     @pointer = new_pointer
-    STDOUT.puts "pointer: #{@pointer}"
     result
   end
 
@@ -188,10 +178,8 @@ class Computer
   end
 end
 
-# input = File.read('./advent05b_input.txt').split(',').map(&:to_i)
+input = File.read('./advent05b_input.txt').split(',').map(&:to_i)
 
-# # input = [3,0,4,0,99]
+computer = Computer.new(input)
 
-# computer = Computer.new(input)
-
-# computer.run
+computer.run
