@@ -3,7 +3,7 @@
 def shuffle(u_list, s_list)
   unless u_list.empty?
 
-    picked_card = u_list.sample # 4
+    picked_card = u_list.sample
     s_list.push(picked_card)
 
     new_list = []
@@ -17,13 +17,6 @@ def shuffle(u_list, s_list)
         new_list.push(card)
       end
     end
-
-    puts "u_list: #{ u_list }"
-    puts "s_list: #{ s_list }"
-    puts "picked_card: #{ picked_card }"
-    puts "new_list: #{ new_list }"
-    puts '-' * 30
-
     shuffle(new_list, s_list)
   end
 
