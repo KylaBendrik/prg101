@@ -68,7 +68,13 @@ class Dragon
     elsif input.include?('bed')
       put_to_bed
     else
-      exit
+      puts "exit?"
+      input = gets.chomp.downcase
+      if input == 'yes'|| input.empty?
+        exit
+      else
+        dispatch
+      end
     end
   end
 
