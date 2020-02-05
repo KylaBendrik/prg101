@@ -27,6 +27,3 @@ end
 
 rectangle = Rectangle.new(width: 2, height: 4)
 puts rectangle.area # Output: 8
-
-rectangle1 = Rectangle.new(4, 4)
-puts rectangle1.area
