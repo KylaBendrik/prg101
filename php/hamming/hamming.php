@@ -7,11 +7,7 @@ function distance(string $strandA, string $strandB) : int
     if (count($arrayA) != count($arrayB)) {
         throw new InvalidArgumentException('DNA strands must be of equal length.');
     }
-    $dist = 0;
-    foreach ($arrayA as $key=>$value) {
-        if ($arrayB[$key] != $value){
-            $dist += 1;
-        }
-    }
-    return $dist;
+    $diff = array_diff_assoc($arrayA, $arrayB);
+
+    return count($diff);
 }
