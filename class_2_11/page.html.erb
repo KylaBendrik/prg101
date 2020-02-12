@@ -1,0 +1,8 @@
+<html>
+<h2>Hello, <%=@user%>!</h2>
+<ul><% @messages.each do |message| %>
+  <li>
+    <%=message[:title]%>
+  </li>
+<% end %></ul>
+</html>

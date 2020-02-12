@@ -1,0 +1,27 @@
+Javascript Frameworks
+Svelte
+Vue
+React
+
+Write dynamic templates
+Re-use templates
+
+on client side, we don't use "template", we use "component"
+
+<h1> Header </h1>
+<main-navigation> </main-navigation> <-- Wait, we made a tag?
+<p> This is a paragraph </p>
+
+Svelte example:
+
+main.svelte
+<script>
+  import Sidebar from !/sidebar.svelte';
+</script>
+<h1>Stuff</h1>
+<sidebar></sidebar>
+
+sidebar.svelte
+<ul>
+  <li>menu Stuff</li>
+</ul>
