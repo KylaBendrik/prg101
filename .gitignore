@@ -12,6 +12,7 @@
 /languages/inputs/
 /javascript/hello-world/node_modules
 /javascript/two-fer/node_modules
+/javascript/resistor-color/node_modules
 
 # Used by dotenv library to load environment variables.
 # .env
