@@ -13,6 +13,10 @@
 /javascript/hello-world/node_modules
 /javascript/two-fer/node_modules
 /javascript/resistor-color/node_modules
+/python/hello-world
+/python/two-fer/__pycache__
+/python/two-fer/.exercism
+/python/two-fer/.pytest_cache
 
 # Used by dotenv library to load environment variables.
 # .env
