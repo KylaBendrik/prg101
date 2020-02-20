@@ -1,0 +1,1 @@
+puts Time.new.strftime("Today is %A, %B %d, %Y")
