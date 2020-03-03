@@ -1,0 +1,11 @@
+---
+1: !ruby/object:Movie
+  title: Avatar
+  director: James Cameron
+  year: '2007'
+  id: 1
+2: !ruby/object:Movie
+  title: 'Star Wars: A New Hope'
+  director: George Lucas
+  year: '1975'
+  id: 2
